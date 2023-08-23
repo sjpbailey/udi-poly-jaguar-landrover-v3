@@ -2,13 +2,13 @@
 ND-landctrl-NAME = Land Rover Controller
 ND-landctrl-ICON = Alarm
 ST-landc-ST-NAME = Tuya NodeServer Running
-CMD-landc-QUERY-NAME = Query
+#CMD-landc-QUERY-NAME = Query
 CMD-landc-REMOVE_NOTICES_ALL-NAME = Remove Notices
 CMD-landc-REMOVE_NOTICE_TEST-NAME = Remove Test
 
 # LandNode
-ND-landnode-NAME = Vehicle Statuses
-ND-landnode-ICON = LampAndSwitch
+ND-landnode-NAME = Gas Vehicle Statuses
+ND-landnode-ICON = SmokeSensor
 ST-land-ST-NAME = Node Status
 ST-land-GV1-NAME = Milage
 ST-land-GV21-NAME = Milage Meters
@@ -58,8 +58,8 @@ ALRM-0 = Unarmed
 ALRM-1 = Armed
 
 # LandNode EV
-ND-landevnode-NAME = Vehicle Statuses
-ND-landevnode-ICON = LampAndSwitch
+ND-landevnode-NAME = EV Vehicle Statuses
+ND-landevnode-ICON = EnergyMonitor
 ST-landev-ST-NAME = Node Status
 ST-landev-GV1-NAME = Milage
 ST-landev-GV21-NAME = Milage Meters

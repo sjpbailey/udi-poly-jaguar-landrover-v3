@@ -97,8 +97,6 @@ class JaguarController(udi_interface.Node):
 
     def check_params(self):
         self.Notices.clear()
-        #self.Notices['hello'] = 'Hey there, my IP is {}'.format(self.poly.network_interface['addr'])
-        #self.Notices['hello2'] = 'Hello Friends!'
         default_email = "joe@ddd.net"
         default_password = "go with your password"
         default_pin = "1234"
@@ -123,7 +121,7 @@ class JaguarController(udi_interface.Node):
 
         # Add a notice if they need to change the email/password from the default.
         if self.email == default_email or self.password == default_password or self.pin == default_pin:
-            self.Notices['auth'] = 'Please set proper email and password and pin in configuration page'
+            self.Notices['auth'] = 'Please set proper email and password and pin in the configuration page then restart'
             self.Notices['test'] = 'Jaguar, Land Rover'
 
 
@@ -137,7 +135,7 @@ class JaguarController(udi_interface.Node):
 
     id = 'landctrl'
     commands = {
-        'QUERY': query,
+        #'QUERY': query,
         'REMOVE_NOTICES_ALL': remove_notices_all,
         'REMOVE_NOTICE_TEST': remove_notice_test,
     }
