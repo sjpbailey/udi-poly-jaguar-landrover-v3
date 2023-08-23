@@ -1,0 +1,59 @@
+<editors>
+    <!-- Boolean -->
+    
+    <editor id="bool">
+        <range uom="2" subset="0,1"/>
+    </editor>
+    
+    <editor id="LEVEL">
+        <range uom="17" min="40" max="10000" step="1" prec="1"/>
+    </editor>
+    
+    <editor id="MILE">
+        <range uom="116" min="0" max="9999999" step="1" prec="0"/>
+    </editor>
+
+    <editor id="METERS">
+        <range uom="38" min="0" max="9999999" step="1" prec="0"/>
+    </editor>
+
+    <editor id="VOLT">
+        <range uom="72" min="0" max="240" step="1" prec="0"/>
+    </editor>
+
+    <editor id = "LOCK" > 
+    <range  uom="25" subset="0-1" nls="LOCK" />
+    </editor>
+
+    <editor id = "MODE" > 
+    <range  uom="25" subset="0-1" nls="MODE" />
+    </editor>
+
+    <editor id = "TEMP" >
+    <range uom="17" min="0" max="150" step="1" prec="1" />
+    <!--<range uom="4" min="-50" max="75" step="0.5" prec="1" />
+    <range uom="26" min="-223" max="348" step="0.5" prec="1" />
+    <range  uom="25" subset="0-1,99" nls="UNKNOWN" />-->
+    </editor>
+
+    <editor id = "RAW" > 
+    <range  uom="56" min="0" max="9999999.9999999" step="1" prec="0" />
+    </editor>
+
+    <editor id = "OPEN" >     
+    <range  uom="25" subset="0-1" nls="OPEN" />
+    </editor>
+
+    <editor id = "MINITS" >     
+    <range  uom="44" min="0" max="600" />
+    </editor>
+
+    <editor id = "ENGINE" >     
+    <range  uom="25" subset="0-1" nls="ENGINE" />
+    </editor>
+
+    <editor id = "ALRM" > 
+    <range  uom="25" subset="0-1" nls="ALRM" />
+    </editor>
+
+</editors>

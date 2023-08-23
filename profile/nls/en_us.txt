@@ -1,0 +1,93 @@
+# controller
+ND-landctrl-NAME = Land Rover Controller
+ND-landctrl-ICON = Alarm
+ST-landc-ST-NAME = Tuya NodeServer Running
+CMD-landc-QUERY-NAME = Query
+CMD-landc-REMOVE_NOTICES_ALL-NAME = Remove Notices
+CMD-landc-REMOVE_NOTICE_TEST-NAME = Remove Test
+
+# LandNode
+ND-landnode-NAME = Vehicle Statuses
+ND-landnode-ICON = LampAndSwitch
+ST-land-ST-NAME = Node Status
+ST-land-GV1-NAME = Milage
+ST-land-GV21-NAME = Milage Meters
+ST-land-GV2-NAME = Battery Voltage
+ST-land-GV4-NAME = Coolant Temp
+ST-land-GV3-NAME = Oil Warning
+ST-land-GV5-NAME = Coolant Warning
+ST-land-GV6-NAME = Brake Fluid Warning
+ST-land-GV7-NAME = Washer Fluid Warning
+ST-land-GV8-NAME = Doors Locked
+ST-land-GV22-NAME = Alarm Armed
+ST-land-GV10-NAME = Lock Command
+ST-land-GV11-NAME = Hood Locked
+ST-land-GV12-NAME = Boot Locked
+ST-land-GV17-NAME = SunRoof Open
+ST-land-GV13-NAME = Tire FR PSI
+ST-land-GV14-NAME = Tire FL PSI
+ST-land-GV15-NAME = Tire RR PSI
+ST-land-GV16-NAME = Tire RL PSI
+ST-land-GV18-NAME = Setpoint degF
+ST-land-GV19-NAME = Start Time
+ST-land-GV20-NAME = Engine State
+
+#CMD-land-START-NAME = START
+CMD-land-TEMP-NAME = START VEHICLE
+CMD-land-STOP-NAME = STOP
+CMD-land-DOORS-NAME = LOCK
+CMD-land-BEEP-NAME = BEEP FLASH ARM
+#CMD-land-ALARM-NAME = ARM RESET
+CMD-land-QUERY-NAME = QUERY
+
+# Status
+MODE-0 = Normal
+MODE-1 = Alarm
+# Doors
+LOCK-0 = Unlock
+LOCK-1 = Lock
+# Window
+OPEN-0 = Closed
+OPEN-1 = Open
+# Engine
+ENGINE-0 = Stopped
+ENGINE-1 = Running
+
+# Alarm
+ALRM-0 = Unarmed
+ALRM-1 = Armed
+
+# LandNode EV
+ND-landevnode-NAME = Vehicle Statuses
+ND-landevnode-ICON = LampAndSwitch
+ST-landev-ST-NAME = Node Status
+ST-landev-GV1-NAME = Milage
+ST-landev-GV21-NAME = Milage Meters
+ST-landev-GV2-NAME = Battery Voltage
+#ST-landev-GV4-NAME = Coolant Temp
+#ST-landev-GV3-NAME = Oil Warning
+#ST-landev-GV5-NAME = Coolant Warning
+ST-landev-GV6-NAME = Brake Fluid Warning
+ST-landev-GV7-NAME = Washer Fluid Warning
+ST-landev-GV8-NAME = Doors Locked
+ST-landev-GV22-NAME = Alarm Armed
+ST-landev-GV10-NAME = Lock Command
+ST-landev-GV11-NAME = Hood Locked
+ST-landev-GV12-NAME = Boot Locked
+ST-landev-GV17-NAME = SunRoof Open
+ST-landev-GV13-NAME = Tire FR PSI
+ST-landev-GV14-NAME = Tire FL PSI
+ST-landev-GV15-NAME = Tire RR PSI
+ST-landev-GV16-NAME = Tire RL PSI
+ST-landev-GV18-NAME = Setpoint degF
+ST-landev-GV19-NAME = Start Time
+ST-landev-GV20-NAME = Engine State
+
+#CMD-landev-START-NAME = START
+CMD-landev-TEMP-NAME = START VEHICLE
+CMD-landev-STOP-NAME = STOP
+CMD-landev-DOORS-NAME = LOCK
+CMD-landev-BEEP-NAME = BEEP FLASH ARM
+#CMD-landev-ALARM-NAME = ARM RESET
+CMD-landev-QUERY-NAME = QUERY
+ # what

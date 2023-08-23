@@ -1,0 +1,124 @@
+<nodeDefs>
+    <!-- NODE DEF from 5.0 document http://wiki.universal-devices.com/index.php?title=V50_MAIN -->
+    <!-- controller, this must mach the id in your Controller class-->
+    <nodeDef id="landctrl" nls="landc">
+        <editors/>
+        <sts>
+            <st id="ST" editor="bool"/>
+        </sts>
+        <cmds>
+            <accepts>
+                <cmd id="QUERY" />
+                <cmd id="REMOVE_NOTICE_TEST"/>
+                <cmd id="REMOVE_NOTICES_ALL" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+    
+    <nodeDef id="landnode" nls="land">
+        <editors />
+        <sts>
+            <st id="ST" editor="bool" />
+            <st id="GV1" editor="MILE" />
+            <st id="GV21" editor="METERS" />
+            <st id="GV2" editor="VOLT" />
+            <st id="GV4" editor="TEMP" />
+            <st id="GV13" editor="RAW" />
+            <st id="GV14" editor="RAW" />
+            <st id="GV15" editor="RAW" />
+            <st id="GV16" editor="RAW" />
+            <st id="GV3" editor="MODE" />
+            <st id="GV5" editor="MODE" />
+            <st id="GV6" editor="MODE" />
+            <st id="GV7" editor="MODE" />
+            <st id="GV22" editor="ALRM" />
+            <!--st id="GV10" editor="LOCK" /-->
+            <st id="GV8" editor="LOCK" />
+            <st id="GV11" editor="LOCK" />
+            <st id="GV12" editor="LOCK" />
+            <st id="GV17" editor="OPEN" />
+            <st id="GV18" editor="LEVEL" />
+            <st id="GV19" editor="MINITS" />
+            <st id="GV20" editor="ENGINE" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                
+                <cmd id="DOORS" > 
+                    <p id="" editor="LOCK" init="GV10" /> 
+                </cmd>
+                
+                <cmd id="TEMP">
+                    <p id="" editor="LEVEL" init="GV18" />
+                </cmd>
+                
+                <cmd id="STOP">
+                    <p id="" editor="bool" init= "" />
+                </cmd>
+                
+                <cmd id="BEEP">
+                    <p id="" editor="bool" init= "" />
+                </cmd>
+                
+                <cmd id="QUERY" />
+                <!--cmd id="ALARM" />
+                <cmd id="START" /-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+    <nodeDef id="landevnode" nls="landev">
+        <editors />
+        <sts>
+            <st id="ST" editor="bool" />
+            <st id="GV1" editor="MILE" />
+            <st id="GV21" editor="METERS" />
+            <st id="GV2" editor="VOLT" />
+            <!--st id="GV4" editor="TEMP" /-->
+            <st id="GV13" editor="RAW" />
+            <st id="GV14" editor="RAW" />
+            <st id="GV15" editor="RAW" />
+            <st id="GV16" editor="RAW" />
+            <!--st id="GV3" editor="MODE" />
+            <st id="GV5" editor="MODE" /-->
+            <st id="GV6" editor="MODE" />
+            <st id="GV7" editor="MODE" />
+            <st id="GV22" editor="ALRM" />
+            <!--st id="GV10" editor="LOCK" /-->
+            <st id="GV8" editor="LOCK" />
+            <st id="GV11" editor="LOCK" />
+            <st id="GV12" editor="LOCK" />
+            <st id="GV17" editor="OPEN" />
+            <st id="GV18" editor="LEVEL" />
+            <st id="GV19" editor="MINITS" />
+            <st id="GV20" editor="ENGINE" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                
+                <cmd id="DOORS" > 
+                    <p id="" editor="LOCK" init="GV10" /> 
+                </cmd>
+                
+                <cmd id="TEMP">
+                    <p id="" editor="LEVEL" init="GV18" />
+                </cmd>
+                
+                <cmd id="STOP">
+                    <p id="" editor="bool" init= "" />
+                </cmd>
+                
+                <cmd id="BEEP">
+                    <p id="" editor="bool" init= "" />
+                </cmd>
+                
+                <cmd id="QUERY" />
+                <!--cmd id="ALARM" />
+                <cmd id="START" /-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+</nodeDefs>

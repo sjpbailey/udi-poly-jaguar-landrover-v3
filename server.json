@@ -1,0 +1,38 @@
+{
+	"name": "LandRover",
+	"docs": "https://github.com/sjpbailey/udi-poly-jaguar-landrover-v3/blob/main/README.md",
+	"type": "python3",
+	"executable": "land_rov.py",
+	"install": "install.sh",
+	"description": "Jag Land Rover",
+	"notice": "Please follow all codes & safety precautions for mechanical equipment",
+	"shortPoll": "600",
+	"longPoll": "66000",
+	"testMode": false,
+	"logLevel": "INFO",
+	"profile_version": "1.0.2",
+	"customParams": {
+		"email": "joe@ddd.net",
+		"password": "go with your password", 
+        "pin": "1234"
+	},
+	"credits": [
+		{
+			"title": "Land Rover ",
+			"author": "Steve Bailey (sjpbailey)",
+			"version": "1.0.2",
+			"date": "Aug 15, 2023",
+			"source": "https://github.com/sjpbailey/udi-poly-jaguar-landrover-v3",
+			"license": "https://github.com/sjpbailey/udi-poly-jaguar-landrover-v3/blob/main/LICENSE"
+		}
+	],
+	"store": {
+		"developer": "sjpbailey1961@gmail.com",
+		"purchaseOptions": [
+			{
+				"isPerpetual": true,
+				"price": 0
+			}
+		]
+	}
+}
