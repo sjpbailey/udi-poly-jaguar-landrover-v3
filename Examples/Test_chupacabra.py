@@ -168,8 +168,8 @@ for i in trips["trips"]:#[size-4:size-3]:
     #print(int(i['tripDetails']['endOdometer']*0.00062137))
     #print('\n')
     speed = int(i['tripDetails']['averageSpeed'])
-    avgspd = speed
-    print(avgspd)
+    avgspd = int(speed)
+    print(type(avgspd))
     
     #print(int(i['tripDetails']['averageFuelConsumption']))
     #print(i['tripDetails']['startTime'])
