@@ -2735,8 +2735,8 @@ trips = {
     ]
 }
 
-for i in trips["trips"][38:39]:
-    print(i)
+for i in trips["trips"]:#[38:39]:
+    #print(i)
     print(i['id'])
     print(i['routeDetails'])
     print(i['tripDetails']['startPosition']['address'])
