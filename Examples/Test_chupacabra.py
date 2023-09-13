@@ -3,7 +3,7 @@ import jlrpy
 import json
 
 # Authenticate using the username and password
-c = jlrpy.Connection('my@email.com', 'password')#'my@email.com', 'password'
+c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')#'my@email.com', 'password'
 v = c.vehicles[0]
 #print(v)
 # Get current active statuses
@@ -17,9 +17,9 @@ v = c.vehicles[0]
 
 #### "CLIMATE_STATUS_VENTING_TIME" "CLIMATE_STATUS_REMAINING_RUNTIME"
 #go = v.get_status("THEFT_ALARM_STATUS")
-go = v.get_trips()
+##go = v.get_position()
 #go = json.dumps(go, indent=4)
-print(go)  # dict
+#print(go)  # dict
 
 #for i in go['trips']["tripDetails"]:
 #        print(i)
@@ -146,28 +146,35 @@ print(go)  # dict
 # U_STATUS_CAN = [101:102]
 #go = json.dumps(go, indent=4)
 #print(go)
-#trips = v.get_trips()
+trips = v.get_trips()
+print('\n')
 #trips = json.dumps(trips, indent=4)
 # Writing to sample.json
 #with open("trips.json", "w") as outfile:
 #    outfile.write(trips)
 #print(trips)
-
-for i in go["trips"]: #[38:39]:
+size = len(trips["trips"])
+print(size) #### Total amount of trips
+print('\n')
+for i in trips["trips"]:#[size-4:size-3]:
     #print(i)
-    #print(i)
+    #print('/n')
     #print(i['id'])
     #print(i['routeDetails'])
-    print(i['tripDetails']['startPosition']['address'])
-    print(i['tripDetails']['endPosition']['address'])
-    #print(i['tripDetails']['startOdometer']*0.00062137)
-    #print(i['tripDetails']['endOdometer']*0.00062137)
-    print(i['tripDetails']['averageSpeed'])
-    #print(i['tripDetails']['averageFuelConsumption'])
-    print(i['tripDetails']['startTime'])
-    print(i['tripDetails']['endTime'])
-size = len(go["trips"])
-print(size) ####amount of trips
+    #print(i['tripDetails']['startPosition']['address'])
+    #print(i['tripDetails']['endPosition']['address'])
+    #print('\n')
+    #print(int(i['tripDetails']['startOdometer']*0.00062137))
+    #print(int(i['tripDetails']['endOdometer']*0.00062137))
+    #print('\n')
+    speed = int(i['tripDetails']['averageSpeed'])
+    avgspd = speed
+    print(avgspd)
+    
+    #print(int(i['tripDetails']['averageFuelConsumption']))
+    #print(i['tripDetails']['startTime'])
+    #print(i['tripDetails']['endTime'])
+
 
 
 
