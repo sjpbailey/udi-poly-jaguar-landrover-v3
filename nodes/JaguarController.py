@@ -45,8 +45,8 @@ class JaguarController(udi_interface.Node):
         self.discover()
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
-        self.got = v.get_attributes()
-        
+        got = v.get_attributes()
+        self.got = self.got
 
     def parameterHandler(self, params):
         self.Parameters.load(params)
