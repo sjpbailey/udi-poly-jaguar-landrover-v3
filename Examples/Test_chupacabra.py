@@ -5,7 +5,17 @@ import json
 # Authenticate using the username and password
 c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')#'my@email.com', 'password'
 v = c.vehicles[0]
-#print(v)
+got = v.get_attributes()
+print(got['nickname'])
+print(got['modelYear'])
+print(got['vehicleBrand'])
+print(got['vehicleType'])
+#got = json.dumps(go)#, indent=4)
+#print(got,'nickname')
+#for i in got:
+
+        #print(i)
+
 # Get current active statuses
 #v.lock(4442)
 #c.get_user_info()
@@ -146,17 +156,17 @@ v = c.vehicles[0]
 # U_STATUS_CAN = [101:102]
 #go = json.dumps(go, indent=4)
 #print(go)
-trips = v.get_trips()
-print('\n')
+#trips = v.get_trips()
+#print('\n')
 #trips = json.dumps(trips, indent=4)
 # Writing to sample.json
 #with open("trips.json", "w") as outfile:
 #    outfile.write(trips)
 #print(trips)
-size = len(trips["trips"])
-print(size) #### Total amount of trips
+#size = len(v.get_trips()["trips"])
+#print(size) #### Total amount of trips
 print('\n')
-for i in trips["trips"]:#[size-4:size-3]:
+"""for i in v.get_trips()["trips"]:#[size-4:size-3]:
     #print(i)
     #print('/n')
     #print(i['id'])
@@ -168,12 +178,12 @@ for i in trips["trips"]:#[size-4:size-3]:
     #print(int(i['tripDetails']['endOdometer']*0.00062137))
     #print('\n')
     speed = int(i['tripDetails']['averageSpeed'])
-    avgspd = int(speed)
-    print(type(avgspd))
+    avgspd = speed
+    print(avgspd)
     
     #print(int(i['tripDetails']['averageFuelConsumption']))
     #print(i['tripDetails']['startTime'])
-    #print(i['tripDetails']['endTime'])
+    #print(i['tripDetails']['endTime'])"""
 
 
 
