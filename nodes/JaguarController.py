@@ -24,7 +24,7 @@ class JaguarController(udi_interface.Node):
         super(JaguarController, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
         self.hb = 0
-        self.name = self.got # override what was passed in
+        self.name = self.brand # override what was passed in
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
         self.TypedParameters = Custom(polyglot, 'customtypedparams')
@@ -43,7 +43,6 @@ class JaguarController(udi_interface.Node):
         self.poly.setCustomParamsDoc()
         self.heartbeat(0)
         self.discover()
-
 
     def parameterHandler(self, params):
         self.Parameters.load(params)
@@ -106,9 +105,16 @@ class JaguarController(udi_interface.Node):
 
     def check_params(self):
         self.Notices.clear()
+        default_brand = 'Jaguar'
         default_email = "joe@ddd.net"
         default_password = "go with your password"
         default_pin = "1234"
+
+        self.brand = self.Parameters.brand
+        if self.brand is None:
+            self.brand = default_brand
+            LOGGER.error('check_params: Vehicle Brand was not defined in customParams, please add it.  Using {}'.format(default_email))
+            self.brand = default_brand
 
         self.email = self.Parameters.email
         if self.email is None:
