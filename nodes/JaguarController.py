@@ -76,14 +76,14 @@ class JaguarController(udi_interface.Node):
             nodes[node].reportDrivers()
 
     def discover(self, *args, **kwargs):
-        c = jlrpy.Connection(self.email, self.password)#'my@email.com', 'password'
+        c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
         got = v.get_attributes()
         LOGGER.info(got['nickname'])
         LOGGER.info(got['modelYear'])
         LOGGER.info(got['vehicleBrand'])
         LOGGER.info(got['vehicleType'])
-        self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr', got['nickname'], self.email, self.password, self.pin)) #'Jaguar Land Rover'
+        self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr', got['nickname'], self.email, self.password, self.pin))
 
     def stop(self):
         LOGGER.debug('NodeServer stopped.')
