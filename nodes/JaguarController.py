@@ -6,6 +6,7 @@ Version 1.0.0 Jun 2023
 """
 
 import udi_interface
+import jlrpy
 import logging
 import time
 from nodes import JaguarNode
@@ -75,7 +76,14 @@ class JaguarController(udi_interface.Node):
             nodes[node].reportDrivers()
 
     def discover(self, *args, **kwargs):
-        self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr', 'Jaguar Land Rover', self.email, self.password, self.pin))
+        c = jlrpy.Connection(self.email, self.password)#'my@email.com', 'password'
+        v = c.vehicles[0]
+        got = v.get_attributes()
+        LOGGER.info(got['nickname'])
+        LOGGER.info(got['modelYear'])
+        LOGGER.info(got['vehicleBrand'])
+        LOGGER.info(got['vehicleType'])
+        self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr', got['nickname'], self.email, self.password, self.pin)) #'Jaguar Land Rover'
 
     def stop(self):
         LOGGER.debug('NodeServer stopped.')
