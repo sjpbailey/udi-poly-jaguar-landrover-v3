@@ -24,7 +24,7 @@ class JaguarController(udi_interface.Node):
         super(JaguarController, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
         self.hb = 0
-        
+        self.name = self.got # override what was passed in
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
         self.TypedParameters = Custom(polyglot, 'customtypedparams')
@@ -41,10 +41,6 @@ class JaguarController(udi_interface.Node):
     def start(self):
         self.poly.updateProfile()
         self.poly.setCustomParamsDoc()
-        c = jlrpy.Connection(self.email, self.password)
-        v = c.vehicles[0]
-        got = v.get_attributes()
-        self.name = got['vehicleBrand']  # override what was passed in
         self.heartbeat(0)
         self.discover()
 
@@ -87,6 +83,7 @@ class JaguarController(udi_interface.Node):
         LOGGER.info(got['modelYear'])
         LOGGER.info(got['vehicleBrand'])
         LOGGER.info(got['vehicleType'])
+        self.got = got['vehicleBrand']
         self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr', got['nickname'], self.email, self.password, self.pin))
 
     def stop(self):
