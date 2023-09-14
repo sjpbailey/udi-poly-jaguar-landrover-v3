@@ -24,7 +24,7 @@ class JaguarController(udi_interface.Node):
         super(JaguarController, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
         self.hb = 0
-        self.name = self.brand # override what was passed in
+        # override what was passed in
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
         self.TypedParameters = Custom(polyglot, 'customtypedparams')
@@ -37,10 +37,12 @@ class JaguarController(udi_interface.Node):
         self.poly.subscribe(self.poly.POLL, self.poll)
         self.poly.ready()
         self.poly.addNode(self)
+        self.poly.setCustomParamsDoc()
+        self.name = self.brand
 
     def start(self):
         self.poly.updateProfile()
-        self.poly.setCustomParamsDoc()
+        
         self.heartbeat(0)
         self.discover()
 
