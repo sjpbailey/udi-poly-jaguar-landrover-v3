@@ -24,7 +24,10 @@ class JaguarController(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name):
         super(JaguarController, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
-        self.name = 'Jaguar Control'  # override what was passed in
+        c = jlrpy.Connection(self.email, self.password)
+        v = c.vehicles[0]
+        got = v.get_attributes()
+        self.name = got['vehicleBrand']  # override what was passed in
         self.hb = 0
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
