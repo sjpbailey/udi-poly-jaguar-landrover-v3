@@ -20,12 +20,11 @@ ISY = udi_interface.ISY
 LOG_HANDLER.set_log_format('%(asctime)s %(threadName)-10s %(name)-18s %(levelname)-8s %(module)s:%(funcName)s: %(message)s')
 
 class JaguarController(udi_interface.Node):
-    
     def __init__(self, polyglot, primary, address, name):
         super(JaguarController, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
         self.hb = 0
-        
+        self.name = self.got['vehicleBrand']  # override what was passed in
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
         self.TypedParameters = Custom(polyglot, 'customtypedparams')
@@ -46,8 +45,8 @@ class JaguarController(udi_interface.Node):
         self.discover()
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
-        got = v.get_attributes()
-        self.name = got['vehicleBrand']  # override what was passed in
+        self.got = v.get_attributes()
+        
 
     def parameterHandler(self, params):
         self.Parameters.load(params)
