@@ -3,7 +3,7 @@ import jlrpy
 import json
 
 # Authenticate using the username and password
-c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')#'my@email.com', 'password'
+c = jlrpy.Connection('sjpbailey@comcast.net', 'password')#'my@email.com', 'password'
 v = c.vehicles[0]
 got = v.get_attributes()
 print(got['nickname'])
