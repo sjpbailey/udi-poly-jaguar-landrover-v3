@@ -19,7 +19,7 @@ if __name__ == "__main__":
         LOGGER.debug("Staring Jaguar Interface")
         polyglot = udi_interface.Interface([JaguarController, JaguarNode])
         polyglot.start()
-        control = JaguarController(polyglot, 'controller', 'controller', 'Jaguar')
+        control = JaguarController(polyglot, 'controller', 'controller', 'Jaguar Land Rover')
         polyglot.runForever()
     except (KeyboardInterrupt, SystemExit):
         polyglot.stop()
