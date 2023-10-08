@@ -23,7 +23,7 @@ class JaguarController(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name):
         super(JaguarController, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
-        self.name = self.brand # override what was passed in
+        self.name = 'Land Rover' # override what was passed in
         self.hb = 0
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
