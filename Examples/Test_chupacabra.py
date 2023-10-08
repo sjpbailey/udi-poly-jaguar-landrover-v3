@@ -5,11 +5,13 @@ import json
 # Authenticate using the username and password
 c = jlrpy.Connection('sjpbailey@comcast.net', 'password')#'my@email.com', 'password'
 v = c.vehicles[0]
-got = v.get_attributes()
-print(got['nickname'])
-print(got['modelYear'])
-print(got['vehicleBrand'])
-print(got['vehicleType'])
+#got = v.get_attributes()
+where = v.get_position()
+print(where)
+#print(got['nickname'])
+#print(got['modelYear'])
+#print(got['vehicleBrand'])
+#print(got['vehicleType'])
 #got = json.dumps(go)#, indent=4)
 #print(got,'nickname')
 #for i in got:
