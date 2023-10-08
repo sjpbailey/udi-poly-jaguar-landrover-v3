@@ -40,7 +40,7 @@
             <st id="GV18" editor="LEVEL" />
             <st id="GV19" editor="MINITS" />
             <st id="GV20" editor="ENGINE" />
-            <st id="GV23" editor="PRIV" />
+            <!--st id="GV23" editor="PRIV" /-->
         </sts>
         <cmds>
             <sends />
