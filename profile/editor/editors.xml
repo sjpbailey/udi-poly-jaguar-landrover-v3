@@ -25,6 +25,10 @@
     <range  uom="25" subset="0-1" nls="LOCK" />
     </editor>
 
+    <editor id = "PRIV" > 
+    <range  uom="25" subset="0-1" nls="PRIV" />
+    </editor>
+
     <editor id = "MODE" > 
     <range  uom="25" subset="0-1" nls="MODE" />
     </editor>

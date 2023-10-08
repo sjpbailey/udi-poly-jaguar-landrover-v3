@@ -46,6 +46,9 @@ MODE-1 = Alarm
 # Doors
 LOCK-0 = Unlock
 LOCK-1 = Lock
+# Privacy
+PRIV-0 = Disable
+PRIV-1 = Enable
 # Window
 OPEN-0 = Closed
 OPEN-1 = Open

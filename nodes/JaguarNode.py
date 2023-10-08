@@ -163,6 +163,23 @@ class JaguarNode(udi_interface.Node):
             self.reportDrivers()
         else:
             logging.error('Unknown command for Lock Doors {}'.format(command))
+            
+    def privacy(self, command):
+        c = jlrpy.Connection(self.email, self.password)
+        v = c.vehicles[0]
+        mode = int(float(command.get('value')))
+        if mode == 1:
+            v.enable_privacy_mode(self.pin)
+            self.setDriver('GV23', 0)
+            time.sleep(5)
+            self.reportDrivers()
+        elif mode == 0:
+            v.disable_privacy_mode(self.pin)
+            self.setDriver('GV23', 1)
+            time.sleep(5)
+            self.reportDrivers()
+        else:
+            logging.error('Unknown command for Privacy Mode {}'.format(command))
     
     def beep(self, command):
         c = jlrpy.Connection(self.email, self.password)
@@ -247,6 +264,7 @@ class JaguarNode(udi_interface.Node):
         {'driver': 'GV20', 'value': 0, 'uom': 25, 'name': 'Vehicle State'},
         {'driver': 'GV21', 'value': 0, 'uom': 38, 'name': 'Milage Meters'},
         {'driver': 'GV22', 'value': 0, 'uom': 25, 'name': 'Alarm Status'},
+        {'driver': 'GV23', 'value': 0, 'uom': 25, 'name': 'Privacy Mode'},
         
     ]
 
@@ -260,5 +278,6 @@ class JaguarNode(udi_interface.Node):
                     'START': strt,
                     'STOP': stp,
                     'TEMP': dim,
+                    'PRIV': privacy,
                     
                 }
