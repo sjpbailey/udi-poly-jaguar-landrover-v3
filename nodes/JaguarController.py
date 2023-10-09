@@ -37,11 +37,10 @@ class JaguarController(udi_interface.Node):
         self.poly.subscribe(self.poly.POLL, self.poll)
         self.poly.ready()
         self.poly.addNode(self)
-        self.poly.setCustomParamsDoc()
 
     def start(self):
         self.poly.updateProfile()
-        
+        self.poly.setCustomParamsDoc()
         self.heartbeat(0)
         self.discover()
 
