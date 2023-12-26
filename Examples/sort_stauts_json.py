@@ -1,8 +1,8 @@
 import json
 import jlrpy
-"""c = jlrpy.Connection('my@email.com', 'password')
+c = jlrpy.Connection('sjpbailey@comcast.net', '')
 v = c.vehicles[0]
-status = {"vehicleStatus":
+"""status = {"vehicleStatus":
           {"coreStatus": [{"key": "TU_STATUS_PRIMARY_VOLT", "value": "4.1000000000000005"}, {"key": "TU_STATUS_PRIMARY_CHARGE_PERCENT", "value": "96"},
                           {"key": "DOOR_IS_ALL_DOORS_LOCKED", "value": "TRUE"}, {"key": "TU_STATUS_GSM_MODEM",
                                                                                  "value": "FUNCTIONING"}, {"key": "TU_STATUS_IMEI", "value": "357098161266799"},
@@ -71,9 +71,9 @@ go = 70 #v.get_status("get_rcc_target_value")
 #go = go*1.8+32 
 go = (go - 32) * 5.0/9.0
 print(go)  # dict
-#v.lock(4442)
-"""go = v.get_status()
-for milage in go["vehicleStatus"]['coreStatus'][85:86]:
+#v.lock(1234)
+go = v.get_status()
+for milage in go["vehicleStatus"]['coreStatus'][50:51]:
     print(milage)
     #print(milage['key'])
     #print(i[1])
@@ -141,4 +141,17 @@ for bootlck in status["vehicleStatus"]['coreStatus'][69:70]:
     print(bootlck['key'])
     print(bootlck['value'])"""
     
-    
+for i in v.get_trips()["trips"]:#[size-4:size-3]:
+    #print(i)
+    #print('/n')
+    #print(i['id'])
+    print(i['routeDetails'])
+    print(i['tripDetails']['startPosition']['address'])
+    print(i['tripDetails']['endPosition']['address'])
+    #print('\n')
+    #print(int(i['tripDetails']['startOdometer']*0.00062137))
+    #print(int(i['tripDetails']['endOdometer']*0.00062137))
+    #print('\n')
+    speed = int(i['tripDetails']['averageSpeed'])
+    speed = speed
+    print(speed)    
