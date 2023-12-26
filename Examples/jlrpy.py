@@ -38,7 +38,7 @@ class Connection:
 
     def __init__(self,
                  email='sjpbailey@comcast.net',
-                 password='MyRover61!72',
+                 password='',
                  device_id='',
                  refresh_token='',
                  use_china_servers=False):
