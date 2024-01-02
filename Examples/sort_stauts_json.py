@@ -1,6 +1,6 @@
 import json
 import jlrpy
-c = jlrpy.Connection('sjpbailey@comcast.net', '')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'password')
 v = c.vehicles[0]
 """status = {"vehicleStatus":
           {"coreStatus": [{"key": "TU_STATUS_PRIMARY_VOLT", "value": "4.1000000000000005"}, {"key": "TU_STATUS_PRIMARY_CHARGE_PERCENT", "value": "96"},
@@ -66,7 +66,7 @@ v = c.vehicles[0]
           "lastUpdatedTimeVehicleAlert": "2023-08-05T21:33:59+0000", "lastUpdatedTime": "2023-08-05T22:27:46+0000"}
 
 """
-go = 70 #v.get_status("get_rcc_target_value")
+"""go = 70 #v.get_status("get_rcc_target_value")
 
 #go = go*1.8+32 
 go = (go - 32) * 5.0/9.0
@@ -141,7 +141,7 @@ for bootlck in status["vehicleStatus"]['coreStatus'][69:70]:
     print(bootlck['key'])
     print(bootlck['value'])"""
     
-for i in v.get_trips()["trips"]:#[size-4:size-3]:
+f"""or i in v.get_trips()["trips"]:#[size-4:size-3]:
     #print(i)
     #print('/n')
     #print(i['id'])
@@ -154,4 +154,6 @@ for i in v.get_trips()["trips"]:#[size-4:size-3]:
     #print('\n')
     speed = int(i['tripDetails']['averageSpeed'])
     speed = speed
-    print(speed)    
+    print(speed)"""    
+#v.enable_privacy_mode(4442)
+#v.get_trips()
