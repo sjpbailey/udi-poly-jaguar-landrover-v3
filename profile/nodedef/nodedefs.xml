@@ -94,7 +94,7 @@
             <st id="GV11" editor="LOCK" />
             <st id="GV12" editor="LOCK" />
             <st id="GV17" editor="OPEN" />
-            <!--st id="GV18" editor="LEVEL" /-->
+            <st id="GV18" editor="LEVEL" />
             <st id="GV19" editor="MINITS" />
             <st id="GV20" editor="ENGINE" />
         </sts>
