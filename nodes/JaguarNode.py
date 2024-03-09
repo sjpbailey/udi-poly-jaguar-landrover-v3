@@ -203,7 +203,7 @@ class JaguarNode(udi_interface.Node):
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
         temptur = float(command.get('value'))
-        self.setDriver('SETP', temptur)
+        self.setDriver('GV18', temptur)
         LOGGER.info(temptur)
         # convert to celsius
         temptur = round(int((temptur - 32) * 5.0/9.0))*10
@@ -265,7 +265,7 @@ class JaguarNode(udi_interface.Node):
         {'driver': 'GV15', 'value': 0, 'uom': 56, 'name': 'Rear R Tire'},
         {'driver': 'GV16', 'value': 0, 'uom': 56, 'name': 'Rear L Tire'},
         {'driver': 'GV17', 'value': 0, 'uom': 25, 'name': 'Sun Roof Open'},
-        {'driver': 'SETP', 'value': 0, 'uom': 17, 'name': 'Start Temp'},
+        {'driver': 'GV18', 'value': 0, 'uom': 17, 'name': 'Start Temp'},
         {'driver': 'GV19', 'value': 0, 'uom': 44, 'name': 'Start Time'},
         {'driver': 'GV20', 'value': 0, 'uom': 25, 'name': 'Vehicle State'},
         {'driver': 'GV21', 'value': 0, 'uom': 38, 'name': 'Milage Meters'},
