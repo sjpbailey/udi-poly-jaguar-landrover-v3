@@ -203,7 +203,7 @@ class JaguarNode(udi_interface.Node):
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
         temptur = float(command.get('value'))
-        self.setDriver('GV18', temptur)
+        self.setDriver('SETP', temptur)
         LOGGER.info(temptur)
         # convert to celsius
         temptur = round(int((temptur - 32) * 5.0/9.0))*10
