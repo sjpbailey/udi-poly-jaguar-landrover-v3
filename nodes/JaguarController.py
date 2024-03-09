@@ -6,7 +6,7 @@ Version 1.0.0 Jun 2023
 """
 
 import udi_interface
-import jlrpy
+import Examples.jlrpy as jlrpy
 import logging
 import time
 from nodes import JaguarNode
@@ -17,13 +17,16 @@ Custom = udi_interface.Custom
 ISY = udi_interface.ISY
 
 # IF you want a different log format than the current default
-LOG_HANDLER.set_log_format('%(asctime)s %(threadName)-10s %(name)-18s %(levelname)-8s %(module)s:%(funcName)s: %(message)s')
+LOG_HANDLER.set_log_format(
+    '%(asctime)s %(threadName)-10s %(name)-18s %(levelname)-8s %(module)s:%(funcName)s: %(message)s')
+
 
 class JaguarController(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name):
-        super(JaguarController, self).__init__(polyglot, primary, address, name)
+        super(JaguarController, self).__init__(
+            polyglot, primary, address, name)
         self.poly = polyglot
-        self.name = 'Land Rover' # override what was passed in
+        self.name = 'Land Rover'  # override what was passed in
         self.hb = 0
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
@@ -32,7 +35,8 @@ class JaguarController(udi_interface.Node):
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.LOGLEVEL, self.handleLevelChange)
         self.poly.subscribe(self.poly.CUSTOMPARAMS, self.parameterHandler)
-        self.poly.subscribe(self.poly.CUSTOMTYPEDPARAMS, self.typedParameterHandler)
+        self.poly.subscribe(self.poly.CUSTOMTYPEDPARAMS,
+                            self.typedParameterHandler)
         self.poly.subscribe(self.poly.CUSTOMTYPEDDATA, self.typedDataHandler)
         self.poly.subscribe(self.poly.POLL, self.poll)
         self.poly.ready()
@@ -69,7 +73,7 @@ class JaguarController(udi_interface.Node):
         else:
             LOGGER.debug('shortPoll (controller)')
 
-    def query(self,command=None):
+    def query(self, command=None):
         nodes = self.poly.getNodes()
         for node in nodes:
             nodes[node].reportDrivers()
@@ -83,24 +87,25 @@ class JaguarController(udi_interface.Node):
         LOGGER.info(got['vehicleBrand'])
         LOGGER.info(got['vehicleType'])
         self.got = got['vehicleBrand']
-        self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr', got['nickname'], self.email, self.password, self.pin))
+        self.poly.addNode(JaguarNode(self.poly, self.address, 'jaguaraddr',
+                          got['nickname'], self.email, self.password, self.pin))
 
     def stop(self):
         LOGGER.debug('NodeServer stopped.')
 
-    def heartbeat(self,init=False):
+    def heartbeat(self, init=False):
         LOGGER.debug('heartbeat: init={}'.format(init))
         if init is not False:
             self.hb = init
         LOGGER.debug('heartbeat: hb={}'.format(self.hb))
         if self.hb == 0:
-            self.reportCmd("DON",2)
+            self.reportCmd("DON", 2)
             self.hb = 1
         else:
-            self.reportCmd("DOF",2)
+            self.reportCmd("DOF", 2)
             self.hb = 0
 
-    def set_module_logs(self,level):
+    def set_module_logs(self, level):
         logging.getLogger('urllib3').setLevel(level)
 
     def check_params(self):
@@ -113,25 +118,29 @@ class JaguarController(udi_interface.Node):
         self.brand = self.Parameters.brand
         if self.brand is None:
             self.brand = default_brand
-            LOGGER.error('check_params: Vehicle Brand was not defined in customParams, please add it.  Using {}'.format(default_email))
+            LOGGER.error(
+                'check_params: Vehicle Brand was not defined in customParams, please add it.  Using {}'.format(default_email))
             self.brand = default_brand
 
         self.email = self.Parameters.email
         if self.email is None:
             self.email = default_email
-            LOGGER.error('check_params: email not defined in customParams, please add it.  Using {}'.format(default_email))
+            LOGGER.error(
+                'check_params: email not defined in customParams, please add it.  Using {}'.format(default_email))
             self.email = default_email
 
         self.password = self.Parameters.password
         if self.password is None:
             self.password = default_password
-            LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(default_password))
+            LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(
+                default_password))
             self.password = default_password
-            
+
         self.pin = self.Parameters.pin
         if self.pin is None:
             self.pin = default_pin
-            LOGGER.error('check_params: pin not defined in customParams, please add it.  Using {}'.format(default_password))
+            LOGGER.error('check_params: pin not defined in customParams, please add it.  Using {}'.format(
+                default_password))
             self.pin = default_pin
 
         # Add a notice if they need to change the email/password from the default.
@@ -139,18 +148,17 @@ class JaguarController(udi_interface.Node):
             self.Notices['auth'] = 'Please set proper email and password and pin in the configuration page then restart'
             self.Notices['test'] = 'Jaguar, Land Rover'
 
-
-    def remove_notice_test(self,command):
+    def remove_notice_test(self, command):
         LOGGER.info('remove_notice_test: notices={}'.format(self.Notices))
         self.Notices.delete('test')
 
-    def remove_notices_all(self,command):
+    def remove_notices_all(self, command):
         LOGGER.info('remove_notices_all: notices={}'.format(self.Notices))
         self.Notices.clear()
 
     id = 'landctrl'
     commands = {
-        #'QUERY': query,
+        # 'QUERY': query,
         'REMOVE_NOTICES_ALL': remove_notices_all,
         'REMOVE_NOTICE_TEST': remove_notice_test,
     }

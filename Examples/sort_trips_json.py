@@ -1,6 +1,6 @@
 import json
-
-trips = {
+import Examples.jlrpy as jlrpy
+'''trips = {
     "trips": [
         {
             "id": 1691977113351,
@@ -2744,4 +2744,9 @@ for i in trips["trips"]:#[38:39]:
     print(i['tripDetails']['startOdometer'])
     print(i['tripDetails']['endOdometer'])
     print(i['tripDetails']['averageSpeed'])
-    print(i['tripDetails']['averageFuelConsumption']) 
+    print(i['tripDetails']['averageFuelConsumption']) '''
+
+
+c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
+v = c.vehicles[0]
+print(v)

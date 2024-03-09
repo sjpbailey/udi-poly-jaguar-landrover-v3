@@ -1,57 +1,59 @@
 
-import jlrpy
+import jlrpy as jlrpy
 import json
 
 # Authenticate using the username and password
-c = jlrpy.Connection('sjpbailey@comcast.net', 'password')#'my@email.com', 'password'
+# 'my@email.com', 'password'
+c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
 v = c.vehicles[0]
-#got = v.get_attributes()
+got = v.get_attributes()
+v.remote_engine_start(4442, '21')
 where = v.get_position()
 print(where)
-#print(got['nickname'])
-#print(got['modelYear'])
-#print(got['vehicleBrand'])
-#print(got['vehicleType'])
-#got = json.dumps(go)#, indent=4)
-#print(got,'nickname')
-#for i in got:
+print(got['nickname'])
+# print(got['modelYear'])
+# print(got['vehicleBrand'])
+# print(got['vehicleType'])
+# got = json.dumps(go)#, indent=4)
+# print(got,'nickname')
+# for i in got:
 
-        #print(i)
+# print(i)
 
 # Get current active statuses
-#v.lock(4442)
-#c.get_user_info()
-#p = c.get_user_info()
-#go = v.get_status()
-#go = json.dumps(go, indent=4)
-#print(go)
-#v.set_rcc_target_value(4442, 28)
+# v.lock(4442)
+# c.get_user_info()
+# p = c.get_user_info()
+# go = v.get_status()
+# go = json.dumps(go, indent=4)
+# print(go)
+# v.set_rcc_target_value(4442, 28)
 
-#### "CLIMATE_STATUS_VENTING_TIME" "CLIMATE_STATUS_REMAINING_RUNTIME"
-#go = v.get_status("THEFT_ALARM_STATUS")
-##go = v.get_position()
-#go = json.dumps(go, indent=4)
-#print(go)  # dict
+# "CLIMATE_STATUS_VENTING_TIME" "CLIMATE_STATUS_REMAINING_RUNTIME"
+# go = v.get_status("THEFT_ALARM_STATUS")
+# go = v.get_position()
+# go = json.dumps(go, indent=4)
+# print(go)  # dict
 
-#for i in go['trips']["tripDetails"]:
+# for i in go['trips']["tripDetails"]:
 #        print(i)
 
 
-#v.get_status("TYRE_PRESSURE_REAR_RIGHT")
-#for i in go["vehicleAlerts"]: #["vehicleStatus"]["coreStatus"]["vehicleAlerts"]:
+# v.get_status("TYRE_PRESSURE_REAR_RIGHT")
+# for i in go["vehicleAlerts"]: #["vehicleStatus"]["coreStatus"]["vehicleAlerts"]:
 #   print(i)
-    # print()
-    #print(i['key'])
+# print()
+# print(i['key'])
 #    print()
-    #print(i['value'])
+# print(i['value'])
 #    print()
-    #print(i['value']['TU_STATUS_SERIAL_NUMBER'])
-    # print(i['value'])"""
-#v.get_status("TU_STATUS_PRIMARY_VOLT")
+# print(i['value']['TU_STATUS_SERIAL_NUMBER'])
+# print(i['value'])"""
+# v.get_status("TU_STATUS_PRIMARY_VOLT")
 
-#for i in go["vehicleStatus"]["coreStatus"][29:30]:
+# for i in go["vehicleStatus"]["coreStatus"][29:30]:
 #    print(i)
-#    print(i['value'])    
+#    print(i['value'])
 
 # Ledgend of calls
 # TU_STATUS_PRIMARY_VOLT = for i in go["vehicleStatus"]["coreStatus"][0:1]
@@ -75,17 +77,17 @@ print(where)
 # ODOMETER_MILES = [18:19]
 # TU_STATUS_SECONDARY_VOLT = [19:20]
 # SRS_STATUS = [20:21]
-        # DOOR_REAR_RIGHT_LOCK_STATUS = [21:22] ############# DOORS
+# DOOR_REAR_RIGHT_LOCK_STATUS = [21:22] ############# DOORS
 # IS_PANIC_ALARM_TRIGGERED = [22:23]
 # BATTERY_STATUS_12V_HEALTH = [23:24]
-        # DOOR_FRONT_RIGHT_POSITION = [24:25] ############# DOORS
+# DOOR_FRONT_RIGHT_POSITION = [24:25] ############# DOORS
 # BRAKE_FLUID_WARN = [25:26]
-        # DOOR_REAR_LEFT_LOCK_STATUS = [26:27] ############# DOORS
+# DOOR_REAR_LEFT_LOCK_STATUS = [26:27] ############# DOORS
 # TU_STATUS_MOBILE_PHONE_CONNECTED = [27:28]
 # BATTERY_STATUS_12V_ESTIMATE = [28:29]
 # EXT_OIL_LEVEL_WARN = [29:30]        ############### OIL
 # TU_STATUS_MIC = [30:31]
-        # DOOR_ENGINE_HOOD_POSITION = [31:32] ############# DOORS
+# DOOR_ENGINE_HOOD_POSITION = [31:32] ############# DOORS
 # TU_STATUS_POWER = [32:33]
 # TRANSPORT_MODE_START = [33:34]
 # EXT_BULB_STATUS_LEFT_TURN_ANY = [34:35]
@@ -95,7 +97,7 @@ print(where)
 # TU_STATUS_INT_RTC = [38:39]
 # TYRE_STATUS_FRONT_LEFT = [39:40]
 # THEFT_ALARM_STATUS = [40:41]
-                                                    # IS_SUNROOF_OPEN = [41:42]
+# IS_SUNROOF_OPEN = [41:42]
 # ODOMETER" = [42:43]
 # EXT_KILOMETERS_TO_SERVICE = [43:44]
 # TU_STATUS_DAYS_SINCE_GNSS_FIX = [44:45]
@@ -111,15 +113,15 @@ print(where)
 # TU_STATUS_HANDSET = [54:55]
 # BRAZIL_EVENT_MODE = [55:56]
 # IS_CRASH_SITUATION = [56:57]
-        # DOOR_FRONT_RIGHT_LOCK_STATUS = [57:58] ############# DOORS
+# DOOR_FRONT_RIGHT_LOCK_STATUS = [57:58] ############# DOORS
 # TYRE_PRESSURE_REAR_RIGHT = [58:59]
 # TU_STATUS_CONFIG_VERSION = [59:60]
 # CLIMATE_STATUS_TIMER2_DAY = [60:61]
-        # DOOR_FRONT_LEFT_LOCK_STATUS = [61:62] ############# DOORS
+# DOOR_FRONT_LEFT_LOCK_STATUS = [61:62] ############# DOORS
 # WINDOW_REAR_LEFT_STATUS = [62:63] ############## Window
 # TU_STATUS_EXT_HANDSFREE = [63:64]
 # CLIMATE_STATUS_FFH_REMAINING_RUNTIME = [64:65]
-                                        # CLIMATE_STATUS_VENTING_TIME = [65:66] ####Start vent time
+# CLIMATE_STATUS_VENTING_TIME = [65:66] ####Start vent time
 # TYRE_PRESSURE_FRONT_RIGHT = [66:67]
 # FUEL_LEVEL_PERC = [67:68]
 # CLIMATE_STATUS_TIMER2_MONTH = [68:69]
@@ -156,22 +158,22 @@ print(where)
 # TU_ACTIVATION_STATUS = [99:100]
 # DOOR_BOOT_LOCK_STATUS = [100:101] ############# DOORS
 # U_STATUS_CAN = [101:102]
-#go = json.dumps(go, indent=4)
-#print(go)
-#trips = v.get_trips()
-#print('\n')
-#trips = json.dumps(trips, indent=4)
+# go = json.dumps(go, indent=4)
+# print(go)
+# trips = v.get_trips()
+# print('\n')
+# trips = json.dumps(trips, indent=4)
 # Writing to sample.json
-#with open("trips.json", "w") as outfile:
+# with open("trips.json", "w") as outfile:
 #    outfile.write(trips)
-#print(trips)
-#size = len(v.get_trips()["trips"])
-#print(size) #### Total amount of trips
-print('\n')
-for i in v.get_trips()["trips"]:#[size-4:size-3]:
-    #print(i)
-    #print('/n')
-    #print(i['id'])
+# print(trips)
+# size = len(v.get_trips()["trips"])
+# print(size) #### Total amount of trips
+'''print('\n')
+for i in v.get_trips()["trips"]:  # [size-4:size-3]:
+    # print(i)
+    # print('/n')
+    # print(i['id'])
     print(i['routeDetails'])
     print(i['tripDetails']['startPosition']['address'])
     print(i['tripDetails']['endPosition']['address'])
@@ -181,13 +183,11 @@ for i in v.get_trips()["trips"]:#[size-4:size-3]:
     print('\n')
     speed = int(i['tripDetails']['averageSpeed'])
     avgspd = speed
-    print(avgspd)
-    
-    #print(int(i['tripDetails']['averageFuelConsumption']))
-    #print(i['tripDetails']['startTime'])
-    #print(i['tripDetails']['endTime'])"""
+    print(avgspd)'''
 
-
+# print(int(i['tripDetails']['averageFuelConsumption']))
+# print(i['tripDetails']['startTime'])
+# print(i['tripDetails']['endTime'])"""
 
 
 """print(type(go)) #(str)

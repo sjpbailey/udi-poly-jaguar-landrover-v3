@@ -11,7 +11,7 @@ If the vehicle is charging during off-peak hours, the charging will stop.
 
 """
 
-import jlrpy
+import Examples.jlrpy as jlrpy
 import threading
 import datetime
 import math
@@ -26,6 +26,7 @@ import configparser
 # passwords containing a ':' are not allowed
 
 logger = jlrpy.logger
+
 
 def distance(origin, destination):
     """
@@ -64,6 +65,7 @@ def distance(origin, destination):
     d = radius * c
     return d
 
+
 def check_soc():
     """Retrieve vehicle status and stop or start charging if
     current charging level matches or exceeds specified max level and
@@ -73,27 +75,28 @@ def check_soc():
 
     p = v.get_position()
     position = (p['position']['latitude'], p['position']['longitude'])
-    d = int(1000*distance(home,position))
+    d = int(1000*distance(home, position))
     if (d > 100):
         logger.info("car is "+str(d)+"m from home")
         return
 
     t = datetime.datetime.now()
     # offpeak: M-F (0-4) 0:00- 7:00, 23:00-23:59
-    #          S-S (5-6) 0:00-15:00, 19:00-23:59 
+    #          S-S (5-6) 0:00-15:00, 19:00-23:59
     today = date.weekday(t)
-    offpeak = ( (t.hour <  peak[today][0] or t.hour >= peak[today][1]))
+    offpeak = ((t.hour < peak[today][0] or t.hour >= peak[today][1]))
 
     # getting health status forces a status update
     healthstatus = v.get_health_status()
     vehicleStatus = v.get_status()['vehicleStatus']
-    status = { d['key'] : d['value'] for d in vehicleStatus['evStatus'] }
+    status = {d['key']: d['value'] for d in vehicleStatus['evStatus']}
 
     current_soc = int(status['EV_STATE_OF_CHARGE'])
     charging_status = status['EV_CHARGING_STATUS']
-    logger.info("current SoC is "+str(current_soc)+"%"+", offpeak is "+str(offpeak))
+    logger.info("current SoC is "+str(current_soc) +
+                "%"+", offpeak is "+str(offpeak))
 
-    if status['EV_CHARGING_METHOD']  == "WIRED":
+    if status['EV_CHARGING_METHOD'] == "WIRED":
         logger.info("car is plugged in")
         logger.info("charging status is "+charging_status)
         if offpeak:
@@ -112,21 +115,29 @@ def check_soc():
     else:
         logger.info("car is not plugged in")
 
+
 config = configparser.ConfigParser()
-configfile = (os.path.expanduser('~')+"/.jlrpy.ini") #make platform independent
+# make platform independent
+configfile = (os.path.expanduser('~')+"/.jlrpy.ini")
 config.read(configfile)
 username = config['jlrpy']['my@email.com']
 password = config['jlrpy']['password']
-home = (float(config['jlrpy']['home_latitude']), float(config['jlrpy']['home_longitude']))
+home = (float(config['jlrpy']['home_latitude']),
+        float(config['jlrpy']['home_longitude']))
 max_soc = int(config['jlrpy']['max_soc'])
 
-peak = [ [int(config['jlrpy']['peak_start_mon']),int(config['jlrpy']['peak_end_mon'])],
-         [int(config['jlrpy']['peak_start_tue']),int(config['jlrpy']['peak_end_tue'])],
-         [int(config['jlrpy']['peak_start_wed']),int(config['jlrpy']['peak_end_wed'])],
-         [int(config['jlrpy']['peak_start_thu']),int(config['jlrpy']['peak_end_thu'])],
-         [int(config['jlrpy']['peak_start_fri']),int(config['jlrpy']['peak_end_fri'])],
-         [int(config['jlrpy']['peak_start_sat']),int(config['jlrpy']['peak_end_sat'])],
-         [int(config['jlrpy']['peak_start_sun']),int(config['jlrpy']['peak_end_sun'])]]
+peak = [[int(config['jlrpy']['peak_start_mon']), int(config['jlrpy']['peak_end_mon'])],
+        [int(config['jlrpy']['peak_start_tue']),
+         int(config['jlrpy']['peak_end_tue'])],
+        [int(config['jlrpy']['peak_start_wed']),
+         int(config['jlrpy']['peak_end_wed'])],
+        [int(config['jlrpy']['peak_start_thu']),
+         int(config['jlrpy']['peak_end_thu'])],
+        [int(config['jlrpy']['peak_start_fri']),
+         int(config['jlrpy']['peak_end_fri'])],
+        [int(config['jlrpy']['peak_start_sat']),
+         int(config['jlrpy']['peak_end_sat'])],
+        [int(config['jlrpy']['peak_start_sun']), int(config['jlrpy']['peak_end_sun'])]]
 
 c = jlrpy.Connection(username, password)
 v = c.vehicles[0]

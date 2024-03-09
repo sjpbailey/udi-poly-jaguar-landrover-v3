@@ -9,7 +9,7 @@ You can also specify a minimum charging level and ensure charging is started
 if the battery level drops below the specified minimum state of charge.
 """
 
-import jlrpy
+import Examples.jlrpy as jlrpy
 import threading
 
 
@@ -43,4 +43,3 @@ v = c.vehicles[0]
 print("[*] Enforcing max soc of %d%%" % max_soc)
 print("[*] Enforcing min soc of %d%%" % min_soc)
 check_soc()
-

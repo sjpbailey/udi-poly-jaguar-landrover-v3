@@ -5,7 +5,7 @@ MIT License
 Version 1.0.0 Jun 2023
 """
 import udi_interface
-import jlrpy
+import Examples.jlrpy as jlrpy
 import logging
 import sys
 import time
@@ -13,16 +13,17 @@ import urllib3
 
 LOGGER = udi_interface.LOGGER
 
+
 class JaguarNode(udi_interface.Node):
-    
+
     def __init__(self, polyglot, primary, address, name, email, password, pin):
         super(JaguarNode, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
-        self.lpfx = '%s:%s' % (address,name)
+        self.lpfx = '%s:%s' % (address, name)
 
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
-        
+
         self.email = email
         self.password = password
         self.pin = pin
@@ -30,23 +31,24 @@ class JaguarNode(udi_interface.Node):
     def start(self):
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
-        #self.goNow(self)
+        # self.goNow(self)
         go = v.get_status()
-        
-        ### Climate
-        self.setDriver('GV19', v.get_status("CLIMATE_STATUS_REMAINING_RUNTIME"))
+
+        # Climate
+        self.setDriver('GV19', v.get_status(
+            "CLIMATE_STATUS_REMAINING_RUNTIME"))
         tempestpt = v.get_status("CLIMATE_STATUS_REMAINING_RUNTIME")
         LOGGER.info(f"CLIMATE REMAINING RUNTIME = {tempestpt} minutes\n")
 
-        ### Vehicle State
+        # Vehicle State
         vehstate = v.get_status("VEHICLE_STATE_TYPE")
         LOGGER.info(f"CURRENT VEHICLE STATE = {vehstate} \n")
         if v.get_status("VEHICLE_STATE_TYPE") == "ENGINE_ON_REMOTE_START":
             self.setDriver('GV20', 1)
         else:
             self.setDriver('GV20', 0)
-        
-        ### VARIABLES
+
+        # VARIABLES
         self.setDriver('GV1', v.get_status("ODOMETER_MILES"))
         LOGGER.info("ODOMETER_MILES")
         LOGGER.info(v.get_status("ODOMETER_MILES"))
@@ -54,16 +56,20 @@ class JaguarNode(udi_interface.Node):
         LOGGER.info("ODOMETER_METER")
         LOGGER.info(v.get_status("ODOMETER_METER"))
         if v.get_status("ODOMETER_MILES") is not None:
-            self.setDriver('ST',1)
+            self.setDriver('ST', 1)
         else:
-            self.setDriver('ST',0)
+            self.setDriver('ST', 0)
         self.setDriver('GV2', v.get_status("BATTERY_VOLTAGE"))
-        self.setDriver('GV13', round(float(v.get_status("TYRE_PRESSURE_FRONT_RIGHT"))*.01))
-        self.setDriver('GV14', round(float(v.get_status("TYRE_PRESSURE_FRONT_LEFT"))*.01))
-        self.setDriver('GV15', round(float(v.get_status("TYRE_PRESSURE_REAR_RIGHT"))*.01))
-        self.setDriver('GV16', round(float(v.get_status("TYRE_PRESSURE_REAR_LEFT"))*.01))
-        
-        ### WARNINGS
+        self.setDriver('GV13', round(
+            float(v.get_status("TYRE_PRESSURE_FRONT_RIGHT"))*.01))
+        self.setDriver('GV14', round(
+            float(v.get_status("TYRE_PRESSURE_FRONT_LEFT"))*.01))
+        self.setDriver('GV15', round(
+            float(v.get_status("TYRE_PRESSURE_REAR_RIGHT"))*.01))
+        self.setDriver('GV16', round(
+            float(v.get_status("TYRE_PRESSURE_REAR_LEFT"))*.01))
+
+        # WARNINGS
         LOGGER.info("OIL_LEVEL_WARN")
         LOGGER.info(v.get_status("EXT_OIL_LEVEL_WARN"))
         if v.get_status("EXT_OIL_LEVEL_WARN") == "NORMAL":
@@ -92,30 +98,30 @@ class JaguarNode(udi_interface.Node):
         if v.get_status("WASHER_FLUID_WARN") == "ALARM":
             self.setDriver('GV7', 1)
 
-        ### DOORS
+        # DOORS
         LOGGER.info("DOOR_FRONT_LEFT_LOCK_STATUS")
         LOGGER.info(v.get_status("DOOR_FRONT_LEFT_LOCK_STATUS"))
-        
+
         LOGGER.info("DOOR_FRONT_RIGHT_LOCK_STATUS")
         LOGGER.info(v.get_status("DOOR_FRONT_RIGHT_LOCK_STATUS"))
-        
+
         LOGGER.info("DOOR_REAR_LEFT_LOCK_STATUS")
         LOGGER.info(v.get_status("DOOR_REAR_LEFT_LOCK_STATUS"))
-        
+
         LOGGER.info("DOOR_REAR_RIGHT_LOCK_STATUS")
         LOGGER.info(v.get_status("DOOR_REAR_RIGHT_LOCK_STATUS"))
-        
+
         LOGGER.info("DOOR_IS_ALL_DOORS_LOCKED")
         LOGGER.info(v.get_status("DOOR_IS_ALL_DOORS_LOCKED"))
-        
-        ### DOOR LOCKS
+
+        # DOOR LOCKS
         LOGGER.info("THEFT_ALARM_STATUS")
         LOGGER.info(v.get_status("THEFT_ALARM_STATUS"))
         if v.get_status("THEFT_ALARM_STATUS") == "ALARM_ARMED":
             self.setDriver('GV22', 1)
         else:
             self.setDriver('GV22', 0)
-        
+
         if v.get_status("DOOR_IS_ALL_DOORS_LOCKED") == "TRUE":
             self.setDriver('GV8', 1)
             LOGGER.info('LOCKED')
@@ -145,7 +151,7 @@ class JaguarNode(udi_interface.Node):
             LOGGER.info('SUNROOF OPEN')
         else:
             self.setDriver('GV17', 0)
-            LOGGER.info('SUNROOF CLOSED')            
+            LOGGER.info('SUNROOF CLOSED')
 
     def lckunlck(self, command):
         c = jlrpy.Connection(self.email, self.password)
@@ -163,7 +169,7 @@ class JaguarNode(udi_interface.Node):
             self.reportDrivers()
         else:
             logging.error('Unknown command for Lock Doors {}'.format(command))
-            
+
     def privacy(self, command):
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
@@ -179,19 +185,20 @@ class JaguarNode(udi_interface.Node):
             time.sleep(5)
             self.reportDrivers()
         else:
-            logging.error('Unknown command for Privacy Mode {}'.format(command))
-    
+            logging.error(
+                'Unknown command for Privacy Mode {}'.format(command))
+
     def beep(self, command):
         c = jlrpy.Connection(self.email, self.password)
-        v = c.vehicles[0]       
+        v = c.vehicles[0]
         v.honk_blink()
         v.reset_alarm(self.pin)
-        
+
     def alrmreset(self, command):
         c = jlrpy.Connection(self.email, self.password)
-        v = c.vehicles[0]       
+        v = c.vehicles[0]
         v.reset_alarm(self.pin)
-        
+
     def dim(self, command):
         global temptur
         c = jlrpy.Connection(self.email, self.password)
@@ -211,7 +218,7 @@ class JaguarNode(udi_interface.Node):
         time.sleep(9)
         self.start()
 
-    def strt( self, command):
+    def strt(self, command):
         global temptur
         self.dim()
         c = jlrpy.Connection(self.email, self.password)
@@ -219,7 +226,7 @@ class JaguarNode(udi_interface.Node):
         v.remote_engine_start(self.pin, '21')
         time.sleep(1)
         LOGGER.info("Start")
-        
+
     def stp(self, command):
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
@@ -227,7 +234,7 @@ class JaguarNode(udi_interface.Node):
         v.preconditioning_stop()
         time.sleep(9)
         self.start()
-    
+
     def poll(self, polltype):
         if 'longPoll' in polltype:
             LOGGER.debug('longPoll (node)')
@@ -235,10 +242,10 @@ class JaguarNode(udi_interface.Node):
             LOGGER.debug('shortPoll (node)')
             self.reportDrivers()
             self.start()
-            #nodes = self.poly.getNodes()
-    
-    def query(self,command=None):
-        #self.reportDrivers()
+            # nodes = self.poly.getNodes()
+
+    def query(self, command=None):
+        # self.reportDrivers()
         self.start()
 
     drivers = [
@@ -265,19 +272,19 @@ class JaguarNode(udi_interface.Node):
         {'driver': 'GV21', 'value': 0, 'uom': 38, 'name': 'Milage Meters'},
         {'driver': 'GV22', 'value': 0, 'uom': 25, 'name': 'Alarm Status'},
         {'driver': 'GV23', 'value': 0, 'uom': 25, 'name': 'Privacy Mode'},
-        
+
     ]
 
     id = 'landnode'
 
     commands = {
-                    'DISCOVER': query,
-                    'DOORS': lckunlck,
-                    'ALARM': alrmreset,
-                    'BEEP': beep,
-                    'START': strt,
-                    'STOP': stp,
-                    'TEMP': dim,
-                    'PRIV': privacy,
-                    
-                }
+        'DISCOVER': query,
+        'DOORS': lckunlck,
+        'ALARM': alrmreset,
+        'BEEP': beep,
+        'START': strt,
+        'STOP': stp,
+        'TEMP': dim,
+        'PRIV': privacy,
+
+    }

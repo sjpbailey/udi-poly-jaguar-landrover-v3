@@ -37,7 +37,7 @@ class Connection:
     """Connection to the JLR Remote Car API"""
 
     def __init__(self,
-                 email='sjpbailey@comcast.net',
+                 email='',
                  password='',
                  device_id='',
                  refresh_token='',
@@ -131,9 +131,7 @@ class Connection:
         logger.info("2/2 user logged in, user id retrieved")
 
     def _request(self, url, headers=None, data=None, method="GET"):
-        print(f"URL: {url} \nHEADERS: {headers} \nDATA: {data} \nMETHOD: {method}")
         ret = requests.request(method=method, url=url, headers=headers, json=data, timeout=TIMEOUT)
-        print(ret.text)
         if ret.text:
             try:
                 return json.loads(ret.text)
@@ -154,6 +152,8 @@ class Connection:
             "Authorization": f"Bearer {access_token}",
             "X-Device-Id": self.device_id,
             "x-telematicsprogramtype": "jlrpy",
+            "x-App-Id": "ICR_JAGUAR",
+            "x-App-Secret": "018dd168-6271-707f-9fd4-aed2bf76905e",
             "Content-Type": "application/json"}
 
     def _authenticate(self, data=None):
@@ -220,7 +220,9 @@ class Connection:
 
     def reverse_geocode(self, lat, lon):
         """Get geocode information"""
-        return self.get("en", f"{self.base.IF9}/geocode/reverse/{lat}/{lon}", self.head)
+        headers = self.head.copy()
+        headers["Accept"] = "application/json"
+        return self.get("en", f"{self.base.IF9}/geocode/reverse/{lat}/{lon}", headers)
 
 
 class Vehicle(dict):
@@ -362,7 +364,7 @@ class Vehicle(dict):
     def lock(self, pin):
         """Lock vehicle. Requires personal PIN for authentication"""
         headers = self.connection.head.copy()
-        headers["Content-Type"] = "application/vnd.wirelesscar.ngtp.if9.StartServiceConfiguration-v2+json"
+        headers["Content-Type"] = "application/vnd.wirelesscar.ngtp.if9.StartServiceConfiguration-v3+json"
         rdl_data = self.authenticate_rdl(pin)
 
         return self.post("lock", headers, rdl_data)
@@ -370,7 +372,7 @@ class Vehicle(dict):
     def unlock(self, pin):
         """Unlock vehicle. Requires personal PIN for authentication"""
         headers = self.connection.head.copy()
-        headers["Content-Type"] = "application/vnd.wirelesscar.ngtp.if9.StartServiceConfiguration-v2+json"
+        headers["Content-Type"] = "application/vnd.wirelesscar.ngtp.if9.StartServiceConfiguration-v3+json"
         rdu_data = self.authenticate_rdu(pin)
 
         return self.post("unlock", headers, rdu_data)
@@ -590,7 +592,8 @@ class Vehicle(dict):
 
     def disable_transport_mode(self, pin):
         """Disable transport mode"""
-        return self._prov_command(pin, None, "protectionStrategy_transportMode")
+        exp = int(time.time() * 1000)
+        return self._prov_command(pin, exp, "protectionStrategy_transportMode")
 
     def enable_privacy_mode(self, pin):
         """Enable privacy mode. Will disable journey logging"""

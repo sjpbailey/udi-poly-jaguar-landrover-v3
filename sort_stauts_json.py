@@ -30,9 +30,26 @@ response = json.dumps(response.json(), indent=4, sort_keys=True)
 print(response)
 # print(response.get())
 
-c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
-v = c.vehicles[0]
-print(v)
+
+c = jlrpy.Connection(email='sjpbailey@comcast.net',
+                     refresh_token='48a83fd0-a125-4911-a341-745d0fb83ca9')
+# c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72',
+#                     '2c2a7d02-ebcc-41cf-a914-2e36307897f8')
+# v = c.vehicles[0]
+# print(v)
+
+
+headers = {
+    'X-Device-Id': '{{deviceId}}',
+    'Content-Type': 'application/json',
+    'Connection': 'close',
+}
+
+data = '{\n    "access_token": "{{access_token}}",\n    "authorization_token": "{{authorization_token}}",\n    "expires_in": "{{expires_in}}",\n    "deviceID":"{{deviceId}}"\n}+'
+
+response = requests.post(
+    'https://ifop.prod-row.jlrmotor.com/ifop/jlr/users/{{username}}/clients', headers=headers, data=data)
+
 
 # Second
 '''json_data = {

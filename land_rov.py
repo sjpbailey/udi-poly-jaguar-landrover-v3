@@ -4,7 +4,7 @@ Polyglot v3 node server Lighting Version
 Copyright (C) 2023 by Steven Bailey
 """
 import logging
-import jlrpy
+import Examples.jlrpy as jlrpy
 from nodes import JaguarController
 from nodes import JaguarNode
 import udi_interface
@@ -19,7 +19,8 @@ if __name__ == "__main__":
         LOGGER.debug("Staring Jaguar Interface")
         polyglot = udi_interface.Interface([JaguarController, JaguarNode])
         polyglot.start()
-        control = JaguarController(polyglot, 'controller', 'controller', 'Jaguar Land Rover')
+        control = JaguarController(
+            polyglot, 'controller', 'controller', 'Jaguar Land Rover')
         polyglot.runForever()
     except (KeyboardInterrupt, SystemExit):
         polyglot.stop()
