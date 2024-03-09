@@ -200,7 +200,7 @@ class JaguarNode(udi_interface.Node):
         v.reset_alarm(self.pin)
 
     def dim(self, command):
-        global temptur
+        temptur = self.temptur
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
         temptur = float(command.get('value'))
@@ -219,11 +219,11 @@ class JaguarNode(udi_interface.Node):
         self.start()
 
     def strt(self, command):
-        global temptur
+        temptur = self.temptur
         self.dim()
         c = jlrpy.Connection(self.email, self.password)
         v = c.vehicles[0]
-        v.remote_engine_start(self.pin, '21')
+        v.remote_engine_start(self.pin, temptur)
         time.sleep(1)
         LOGGER.info("Start")
 
