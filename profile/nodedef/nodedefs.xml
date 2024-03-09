@@ -14,7 +14,7 @@
             </accepts>
         </cmds>
     </nodeDef>
-    
+
     <nodeDef id="landnode" nls="land">
         <editors />
         <sts>
@@ -45,28 +45,28 @@
         <cmds>
             <sends />
             <accepts>
-                
 
-                <cmd id="DOORS" > 
-                    <p id="" editor="LOCK" init="GV10" /> 
+
+                <cmd id="DOORS">
+                    <p id="" editor="LOCK" init="GV10" />
                 </cmd>
-                
-                <cmd id="PRIV" > 
-                    <p id="" editor="PRIV" init="GV23" /> 
+
+                <cmd id="PRIV">
+                    <p id="" editor="PRIV" init="GV23" />
                 </cmd>
-                
+
                 <cmd id="TEMP">
                     <p id="" editor="LEVEL" init="GV18" />
                 </cmd>
-                
+
                 <cmd id="STOP">
                     <p id="" editor="bool" init= "" />
                 </cmd>
-                
+
                 <cmd id="BEEP">
                     <p id="" editor="bool" init= "" />
                 </cmd>
-                
+
                 <cmd id="QUERY" />
             </accepts>
         </cmds>
@@ -94,32 +94,32 @@
             <st id="GV11" editor="LOCK" />
             <st id="GV12" editor="LOCK" />
             <st id="GV17" editor="OPEN" />
-            <st id="GV18" editor="LEVEL" />
+            <!--st id="GV18" editor="LEVEL" /-->
             <st id="GV19" editor="MINITS" />
             <st id="GV20" editor="ENGINE" />
         </sts>
         <cmds>
             <sends />
             <accepts>
-                
-                <cmd id="DOORS" > 
-                    <p id="" editor="LOCK" init="GV10" /> 
+
+                <cmd id="DOORS">
+                    <p id="" editor="LOCK" init="GV10" />
                 </cmd>
-                
+
                 <cmd id="TEMP">
-                    <p id="" editor="LEVEL" init="GV18" />
+                    <p id="" editor="LEVEL" init="SETP" />
                 </cmd>
-                
+
                 <cmd id="STOP">
                     <p id="" editor="bool" init= "" />
                 </cmd>
-                
+
                 <cmd id="BEEP">
                     <p id="" editor="bool" init= "" />
                 </cmd>
-                
+
                 <cmd id="QUERY" />
-                
+
             </accepts>
         </cmds>
     </nodeDef>
