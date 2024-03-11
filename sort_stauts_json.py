@@ -14,7 +14,7 @@ headers = {
 
 json_data = {
     'grant_type': 'password',
-    'password': 'MyRover61!72',
+    'password': 'Password',
     'username': 'sjpbailey@comcast.net',
 }
 
@@ -33,7 +33,7 @@ print(response)
 
 c = jlrpy.Connection(email='sjpbailey@comcast.net',
                      refresh_token='48a83fd0-a125-4911-a341-745d0fb83ca9')
-# c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72',
+# c = jlrpy.Connection('sjpbailey@comcast.net', 'Password',
 #                     '2c2a7d02-ebcc-41cf-a914-2e36307897f8')
 # v = c.vehicles[0]
 # print(v)
