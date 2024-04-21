@@ -1,5 +1,5 @@
 import json
-import Examples.jlrpy as jlrpy
+import jlrpy as jlrpy
 import requests
 
 
@@ -30,7 +30,7 @@ response = json.dumps(response.json(), indent=4, sort_keys=True)
 print(response)
 # print(response.get())
 
-c = jlrpy.Connection('sjpbailey@comcast.net', 'Password')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'password')
 v = c.vehicles[0]
 print(v)
 

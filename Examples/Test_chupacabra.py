@@ -4,10 +4,10 @@ import json
 
 # Authenticate using the username and password
 # 'my@email.com', 'password'
-c = jlrpy.Connection('sjpbailey@comcast.net', 'Password')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
 v = c.vehicles[0]
 got = v.get_attributes()
-v.remote_engine_start(4442, '21')
+# v.remote_engine_start(4442, '21')
 where = v.get_position()
 print(where)
 print(got['nickname'])
@@ -24,9 +24,9 @@ print(got['nickname'])
 # v.lock(4442)
 # c.get_user_info()
 # p = c.get_user_info()
-# go = v.get_status()
-# go = json.dumps(go, indent=4)
-# print(go)
+go = v.get_status()
+go = json.dumps(go, indent=4)
+print(go)
 # v.set_rcc_target_value(4442, 28)
 
 # "CLIMATE_STATUS_VENTING_TIME" "CLIMATE_STATUS_REMAINING_RUNTIME"

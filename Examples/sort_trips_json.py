@@ -1,5 +1,5 @@
 import json
-import Examples.jlrpy as jlrpy
+import jlrpy
 '''trips = {
     "trips": [
         {
@@ -2747,6 +2747,11 @@ for i in trips["trips"]:#[38:39]:
     print(i['tripDetails']['averageFuelConsumption']) '''
 
 
-c = jlrpy.Connection('sjpbailey@comcast.net', 'Password')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'password')
+# c = jlrpy.Connection(email='sjpbailey@comcast.net',
+#                    refresh_token='124c3f21-42ds-2e4d-86f8-221v32392a1d')
+
 v = c.vehicles[0]
 print(v)
+c = c.get_user_info()
+print(c)
