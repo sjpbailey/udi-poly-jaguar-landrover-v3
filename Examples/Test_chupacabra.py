@@ -4,10 +4,11 @@ import json
 
 # Authenticate using the username and password
 # 'my@email.com', 'password'
-c = jlrpy.Connection('sjpbailey@comcast.net', 'password')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
 v = c.vehicles[0]
 got = v.get_attributes()
 # v.remote_engine_start(4442, '21')
+v.remote_engine_stop(4442)
 where = v.get_position()
 print(where)
 print(got['nickname'])
