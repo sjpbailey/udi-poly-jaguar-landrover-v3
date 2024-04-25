@@ -1,14 +1,16 @@
 
-import jlrpy as jlrpy
+import jlrpy
 import json
+import time
 
 # Authenticate using the username and password
 # 'my@email.com', 'password'
-c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'password')
 v = c.vehicles[0]
 got = v.get_attributes()
-# v.remote_engine_start(4442, '21')
-v.remote_engine_stop(4442)
+v.remote_engine_start(0000, '21.0')
+time.sleep(30)
+v.remote_engine_stop(0000)
 where = v.get_position()
 print(where)
 print(got['nickname'])
@@ -22,13 +24,13 @@ print(got['nickname'])
 # print(i)
 
 # Get current active statuses
-# v.lock(4442)
+# v.lock(0000)
 # c.get_user_info()
 # p = c.get_user_info()
 go = v.get_status()
 go = json.dumps(go, indent=4)
 print(go)
-# v.set_rcc_target_value(4442, 28)
+# v.set_rcc_target_value(0000, 28)
 
 # "CLIMATE_STATUS_VENTING_TIME" "CLIMATE_STATUS_REMAINING_RUNTIME"
 # go = v.get_status("THEFT_ALARM_STATUS")

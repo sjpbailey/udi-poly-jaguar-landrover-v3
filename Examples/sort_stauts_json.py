@@ -271,7 +271,7 @@ f"""or i in v.get_trips()["trips"]:#[size-4:size-3]:
     speed = int(i['tripDetails']['averageSpeed'])
     speed = speed
     print(speed)"""
-# v.enable_privacy_mode(4442)
+# v.enable_privacy_mode(0000)
 # v.get_trips()
 
 

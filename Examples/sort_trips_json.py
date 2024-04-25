@@ -2747,7 +2747,7 @@ for i in trips["trips"]:#[38:39]:
     print(i['tripDetails']['averageFuelConsumption']) '''
 
 
-c = jlrpy.Connection('sjpbailey@comcast.net', 'MyRover61!72')
+c = jlrpy.Connection('sjpbailey@comcast.net', 'password')
 # c = jlrpy.Connection(email='sjpbailey@comcast.net',
 #                    refresh_token='124c3f21-42ds-2e4d-86f8-221v32392a1d')
 
